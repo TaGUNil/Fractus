@@ -1,6 +1,12 @@
-#include "binarypainter.h"
+#include <vector>
+#include "palettepainter.h"
 
-Image *BinaryPainter::createImage(const Surface *surface) const
+PalettePainter::PalettePainter(Palette *palette) :
+    m_palette(palette)
+{
+}
+
+Image *PalettePainter::createImage(const Surface *surface) const
 {
     if (!surface)
     {
@@ -10,6 +16,7 @@ Image *BinaryPainter::createImage(const Surface *surface) const
     unsigned int width = surface->getWidth();
     unsigned int height = surface->getHeight();
     Level maxValue = surface->getMaxValue();
+    unsigned int paletteLength = m_palette->getLength();
 
     Image *image = new Image(width, height);
     if (!image)
@@ -24,14 +31,22 @@ Image *BinaryPainter::createImage(const Surface *surface) const
         {
             Level point = surface->getPoint(x, y);
 
+            Color color;
+
             if (point == maxValue)
             {
-                image->setPoint(x, y, colorFromRGB(0, 0, 0));
+                color = colorFromRGB(0, 0, 0);
+            }
+            else if (point >= paletteLength)
+            {
+                color = colorFromRGB(0, 0, 0);
             }
             else
             {
-                image->setPoint(x, y, colorFromRGB(255, 255, 255));
+                color = m_palette->getColor(point);
             }
+
+            image->setPoint(x, y, color);
         }
     }
 

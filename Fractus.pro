@@ -25,7 +25,11 @@ SOURCES += main.cpp\
     surface.cpp \
     binarypainter.cpp \
     paintedwidget.cpp \
-    qtpixmapdumper.cpp
+    qtpixmapdumper.cpp \
+    grayscalepainter.cpp \
+    palettepainter.cpp \
+    palette.cpp \
+    rainbowpalettemaker.cpp
 
 HEADERS  += mainwindow.h \
     function.h \
@@ -41,7 +45,12 @@ HEADERS  += mainwindow.h \
     binarypainter.h \
     dumper.h \
     paintedwidget.h \
-    qtpixmapdumper.h
+    qtpixmapdumper.h \
+    grayscalepainter.h \
+    palettepainter.h \
+    palette.h \
+    palettemaker.h \
+    rainbowpalettemaker.h
 
 FORMS    += \
     mainwindow.ui

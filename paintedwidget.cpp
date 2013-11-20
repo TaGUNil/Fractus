@@ -25,3 +25,13 @@ void PaintedWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.drawPixmap(0, 0, *m_pixmap);
 }
+
+void PaintedWidget::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+
+    if (m_pixmap.get())
+    {
+        m_pixmap.reset();
+    }
+}

@@ -1,6 +1,6 @@
-#include "binarypainter.h"
+#include "grayscalepainter.h"
 
-Image *BinaryPainter::createImage(const Surface *surface) const
+Image *GrayscalePainter::createImage(const Surface *surface) const
 {
     if (!surface)
     {
@@ -24,14 +24,26 @@ Image *BinaryPainter::createImage(const Surface *surface) const
         {
             Level point = surface->getPoint(x, y);
 
+            uint8_t brightness;
+
             if (point == maxValue)
             {
-                image->setPoint(x, y, colorFromRGB(0, 0, 0));
+                brightness = 255;
+            }
+            else if (point > 255)
+            {
+                brightness = 255;
             }
             else
             {
-                image->setPoint(x, y, colorFromRGB(255, 255, 255));
+                brightness = point;
             }
+
+            brightness = 255 - brightness;
+
+            image->setPoint(x, y, colorFromRGB(brightness,
+                                               brightness,
+                                               brightness));
         }
     }
 

@@ -6,7 +6,7 @@
 class BinaryPainter : public Painter
 {
 public:
-    Image *createImageFromSurface(const Surface *surface) const;
+    Image *createImage(const Surface *surface) const;
 };
 
 #endif // BINARYPAINTER_H

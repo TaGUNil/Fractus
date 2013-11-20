@@ -4,6 +4,7 @@
 #include <memory>
 #include <QMainWindow>
 #include <QPixmap>
+#include <QResizeEvent>
 #include "image.h"
 
 namespace Ui {
@@ -24,6 +25,7 @@ public slots:
 
 private:
     void draw();
+    void resizeEvent(QResizeEvent *event);
 
     std::unique_ptr<Image> m_image;
     std::unique_ptr<Ui::MainWindow> m_ui;

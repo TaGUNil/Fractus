@@ -16,9 +16,9 @@ Surface *SimpleMandelbrotSampler::createSurface() const
     surface->setMaxValue(m_steps + 1);
 
 #pragma omp parallel for
-    for (size_t y = 0; y < m_height; y++)
+    for (unsigned int y = 0; y < m_height; y++)
     {
-        for (size_t x = 0; x < m_width; x++)
+        for (unsigned int x = 0; x < m_width; x++)
         {
             Complex z = 0.0;
             Real zNorm = 0.0;

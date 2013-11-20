@@ -8,6 +8,11 @@ QtPixmapDumper::QtPixmapDumper(QPixmap *pixmap) :
 
 bool QtPixmapDumper::dumpImage(const Image *image) const
 {
+    if (!image)
+    {
+        return false;
+    }
+
     if (!m_pixmap)
     {
         return false;

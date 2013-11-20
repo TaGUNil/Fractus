@@ -1,32 +1,30 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#include <stdint.h>
-#include <stddef.h>
 #include <vector>
 #include "types.h"
 
 class Image
 {
 public:
-    Image(size_t width,
-          size_t height);
+    Image(unsigned int width,
+          unsigned int height);
 
-    size_t getWidth() const;
-    size_t getHeight() const;
+    unsigned int getWidth() const;
+    unsigned int getHeight() const;
 
-    Color getPoint(size_t x,
-                   size_t y) const;
-    bool setPoint(size_t x,
-                  size_t y,
+    Color getPoint(unsigned int x,
+                   unsigned int y) const;
+    bool setPoint(unsigned int x,
+                  unsigned int y,
                   Color color);
 
     const Color *getRawPoints() const;
     Color *getRawPoints();
 
 private:
-    size_t m_width;
-    size_t m_height;
+    unsigned int m_width;
+    unsigned int m_height;
     std::vector<Color> m_points;
 };
 

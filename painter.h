@@ -11,7 +11,7 @@ public:
     {
     }
 
-    virtual Image *createImageFromSurface(const Surface *surface) const = 0;
+    virtual Image *createImage(const Surface *surface) const = 0;
 };
 
 #endif // PAINTER_H

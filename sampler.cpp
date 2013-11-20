@@ -10,8 +10,8 @@ Sampler::~Sampler()
 {
 }
 
-void Sampler::setSize(size_t width,
-                      size_t height)
+void Sampler::setSize(unsigned int width,
+                      unsigned int height)
 {
     m_width = width;
     m_height = height;

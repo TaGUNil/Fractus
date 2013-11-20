@@ -4,16 +4,30 @@
 #include "simplemandelbrotsampler.h"
 #include "simplejuliasampler.h"
 #include "binarypainter.h"
+#include "grayscalepainter.h"
+#include "palettepainter.h"
 #include "qtpixmapdumper.h"
 #include "polynomialfunction.h"
+#include "rainbowpalettemaker.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+Q_DECLARE_METATYPE(std::shared_ptr<PaletteMaker>)
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    m_image(nullptr),
     m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
+
+    std::shared_ptr<PaletteMaker> rainbow;
+    rainbow.reset(new RainbowPaletteMaker);
+
+    m_ui->paletteComboBox->addItem(tr("Rainbow"),
+                                   QVariant::fromValue(rainbow));
+
+    m_ui->paletteComboBox->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
@@ -45,10 +59,12 @@ void MainWindow::display()
 void MainWindow::save()
 {
     QString fileName;
+    QString filter = tr("PNG images (*.png)");
     fileName = QFileDialog::getSaveFileName(this,
                                             tr("Save image"),
                                             "",
-                                            tr("Images (*.png)"));
+                                            filter,
+                                            &filter);
 
     if (fileName.isEmpty())
     {
@@ -62,7 +78,7 @@ void MainWindow::save()
 
     dumper->dumpImage(m_image.get());
 
-    if (!pixmap.save(fileName, 0, 100))
+    if (!pixmap.save(fileName, "png", 100))
     {
         QMessageBox::critical(this, tr("Error"),
                               tr("Cannot save image file!"));
@@ -113,19 +129,55 @@ void MainWindow::draw()
 
     Complex fovCenter = Complex(m_ui->xFovSpinBox->text().toDouble(),
                                 m_ui->yFovSpinBox->text().toDouble());
-    Real fovSize = m_ui->sizeFovSpinBox->text().toDouble() / 2;
+    Real fovHeight = m_ui->sizeFovSpinBox->text().toDouble() / 2;
+    Real fovWidth = fovHeight *
+            m_ui->centralwidget->width() /
+            m_ui->centralwidget->height();
 
-    sampler->setDomain(fovCenter - Complex(fovSize, fovSize),
-                       fovCenter + Complex(fovSize, fovSize));
+    sampler->setDomain(fovCenter - Complex(fovWidth, fovHeight),
+                       fovCenter + Complex(fovWidth, fovHeight));
 
     sampler->setLimit(m_ui->limitSpinBox->text().toDouble());
     sampler->setSteps(m_ui->stepsSpinBox->text().toUInt());
 
     std::unique_ptr<Painter> painter;
-    painter.reset(new BinaryPainter);
+
+    if (m_ui->binaryRadioButton->isChecked())
+    {
+        painter.reset(new BinaryPainter);
+    }
+    else if (m_ui->grayscaleRadioButton->isChecked())
+    {
+        painter.reset(new GrayscalePainter);
+    }
+    else if (m_ui->paletteRadioButton->isChecked())
+    {
+        int index = m_ui->paletteComboBox->currentIndex();
+        const QVariant &data = m_ui->paletteComboBox->itemData(index);
+        PaletteMaker *maker;
+        maker = data.value<std::shared_ptr<PaletteMaker> >().get();
+
+        painter.reset(new PalettePainter(maker->createPalette()));
+    }
+    else
+    {
+        return;
+    }
 
     std::unique_ptr<Surface> surface;
     surface.reset(sampler->createSurface());
 
-    m_image.reset(painter->createImageFromSurface(surface.get()));
+    m_image.reset(painter->createImage(surface.get()));
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+
+    if (m_image.get())
+    {
+        m_ui->action_Save->setEnabled(false);
+        m_ui->statusbar->clearMessage();
+        m_image.reset();
+    }
 }

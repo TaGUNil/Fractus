@@ -1,25 +1,25 @@
 #include "image.h"
 
-Image::Image(size_t width,
-             size_t height) :
+Image::Image(unsigned int width,
+             unsigned int height) :
     m_width(width),
     m_height(height),
     m_points(width * height, 0)
 {
 }
 
-size_t Image::getWidth() const
+unsigned int Image::getWidth() const
 {
     return m_width;
 }
 
-size_t Image::getHeight() const
+unsigned int Image::getHeight() const
 {
     return m_height;
 }
 
-Color Image::getPoint(size_t x,
-                      size_t y) const
+Color Image::getPoint(unsigned int x,
+                      unsigned int y) const
 {
     if ((x >= m_width) || (y >= m_height))
     {
@@ -29,8 +29,8 @@ Color Image::getPoint(size_t x,
     return m_points[y * m_width + x];
 }
 
-bool Image::setPoint(size_t x,
-                     size_t y,
+bool Image::setPoint(unsigned int x,
+                     unsigned int y,
                      Color value)
 {
     if ((x >= m_width) || (y >= m_height))

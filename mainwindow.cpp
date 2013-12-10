@@ -107,29 +107,29 @@ void MainWindow::draw()
 
     PolynomialFunction *function = new PolynomialFunction(6);
     function->setCoeff(0,
-                       m_ui->a0RealSpinBox->text().toDouble(),
-                       m_ui->a0ImagSpinBox->text().toDouble());
+                       m_ui->a0RealSpinBox->value(),
+                       m_ui->a0ImagSpinBox->value());
     function->setCoeff(1,
-                       m_ui->a1RealSpinBox->text().toDouble(),
-                       m_ui->a1ImagSpinBox->text().toDouble());
+                       m_ui->a1RealSpinBox->value(),
+                       m_ui->a1ImagSpinBox->value());
     function->setCoeff(2,
-                       m_ui->a2RealSpinBox->text().toDouble(),
-                       m_ui->a2ImagSpinBox->text().toDouble());
+                       m_ui->a2RealSpinBox->value(),
+                       m_ui->a2ImagSpinBox->value());
     function->setCoeff(3,
-                       m_ui->a3RealSpinBox->text().toDouble(),
-                       m_ui->a3ImagSpinBox->text().toDouble());
+                       m_ui->a3RealSpinBox->value(),
+                       m_ui->a3ImagSpinBox->value());
     function->setCoeff(4,
-                       m_ui->a4RealSpinBox->text().toDouble(),
-                       m_ui->a4ImagSpinBox->text().toDouble());
+                       m_ui->a4RealSpinBox->value(),
+                       m_ui->a4ImagSpinBox->value());
     function->setCoeff(5,
-                       m_ui->a5RealSpinBox->text().toDouble(),
-                       m_ui->a5ImagSpinBox->text().toDouble());
+                       m_ui->a5RealSpinBox->value(),
+                       m_ui->a5ImagSpinBox->value());
 
     sampler->setFunction(function);
 
-    Complex fovCenter = Complex(m_ui->xFovSpinBox->text().toDouble(),
-                                m_ui->yFovSpinBox->text().toDouble());
-    Real fovHeight = m_ui->sizeFovSpinBox->text().toDouble() / 2;
+    Complex fovCenter = Complex(m_ui->xFovSpinBox->value(),
+                                m_ui->yFovSpinBox->value());
+    Real fovHeight = m_ui->sizeFovSpinBox->value() / 2;
     Real fovWidth = fovHeight *
             m_ui->centralwidget->width() /
             m_ui->centralwidget->height();
@@ -137,8 +137,8 @@ void MainWindow::draw()
     sampler->setDomain(fovCenter - Complex(fovWidth, fovHeight),
                        fovCenter + Complex(fovWidth, fovHeight));
 
-    sampler->setLimit(m_ui->limitSpinBox->text().toDouble());
-    sampler->setSteps(m_ui->stepsSpinBox->text().toUInt());
+    sampler->setLimit(m_ui->limitSpinBox->value());
+    sampler->setSteps(m_ui->stepsSpinBox->value());
 
     std::unique_ptr<Painter> painter;
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1051</width>
-    <height>840</height>
+    <height>855</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>1050</width>
-    <height>840</height>
+    <height>855</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>1051</width>
-     <height>20</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -57,7 +57,7 @@
    <property name="minimumSize">
     <size>
      <width>0</width>
-     <height>20</height>
+     <height>30</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -105,7 +105,7 @@
    <property name="minimumSize">
     <size>
      <width>250</width>
-     <height>38</height>
+     <height>42</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -181,7 +181,7 @@
            <x>0</x>
            <y>20</y>
            <width>231</width>
-           <height>48</height>
+           <height>49</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="setVerticalLayout">
@@ -554,7 +554,7 @@
            <x>0</x>
            <y>20</y>
            <width>231</width>
-           <height>80</height>
+           <height>82</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="fovFormLayout">
@@ -654,7 +654,7 @@
            <x>0</x>
            <y>20</y>
            <width>231</width>
-           <height>50</height>
+           <height>53</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="paramsFormLayout">

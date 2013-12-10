@@ -85,13 +85,13 @@
    <property name="minimumSize">
     <size>
      <width>0</width>
-     <height>20</height>
+     <height>25</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>16777215</width>
-     <height>20</height>
+     <height>25</height>
     </size>
    </property>
   </widget>
@@ -151,7 +151,7 @@
        <x>10</x>
        <y>6</y>
        <width>231</width>
-       <height>771</height>
+       <height>761</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="dockVerticalLayout">

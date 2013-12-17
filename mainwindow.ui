@@ -178,9 +178,9 @@
         <widget class="QWidget" name="verticalLayoutWidget_2">
          <property name="geometry">
           <rect>
-           <x>0</x>
+           <x>10</x>
            <y>20</y>
-           <width>231</width>
+           <width>211</width>
            <height>49</height>
           </rect>
          </property>
@@ -229,9 +229,9 @@
         <widget class="QWidget" name="gridLayoutWidget">
          <property name="geometry">
           <rect>
-           <x>0</x>
+           <x>10</x>
            <y>20</y>
-           <width>231</width>
+           <width>211</width>
            <height>172</height>
           </rect>
          </property>
@@ -542,7 +542,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>100</height>
+          <height>105</height>
          </size>
         </property>
         <property name="title">
@@ -551,10 +551,10 @@
         <widget class="QWidget" name="formLayoutWidget">
          <property name="geometry">
           <rect>
-           <x>0</x>
+           <x>10</x>
            <y>20</y>
-           <width>231</width>
-           <height>82</height>
+           <width>211</width>
+           <height>81</height>
           </rect>
          </property>
          <layout class="QFormLayout" name="fovFormLayout">
@@ -575,7 +575,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="sizeFovLabel">
             <property name="text">
-             <string>FOV size:</string>
+             <string>FOV y size:</string>
             </property>
            </widget>
           </item>
@@ -651,9 +651,9 @@
         <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
-           <x>0</x>
+           <x>10</x>
            <y>20</y>
-           <width>231</width>
+           <width>211</width>
            <height>53</height>
           </rect>
          </property>
@@ -731,9 +731,9 @@
         <widget class="QWidget" name="verticalLayoutWidget_3">
          <property name="geometry">
           <rect>
-           <x>0</x>
+           <x>10</x>
            <y>20</y>
-           <width>231</width>
+           <width>211</width>
            <height>98</height>
           </rect>
          </property>
@@ -789,9 +789,9 @@
         <widget class="QWidget" name="formLayoutWidget_2">
          <property name="geometry">
           <rect>
-           <x>0</x>
+           <x>10</x>
            <y>20</y>
-           <width>231</width>
+           <width>211</width>
            <height>71</height>
           </rect>
          </property>

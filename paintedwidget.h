@@ -15,11 +15,15 @@ public:
 
     void setPixmap(QPixmap *pixmap);
 
+signals:
+    void resized();
+
 private:
     void paintEvent(QPaintEvent *event);
     void resizeEvent(QResizeEvent *event);
 
-    std::unique_ptr<QPixmap> m_pixmap;
+    std::unique_ptr<QPixmap> m_frontPixmap;
+    std::unique_ptr<QPixmap> m_backPixmap;
 };
 
 #endif // PAINTEDWIDGET_H

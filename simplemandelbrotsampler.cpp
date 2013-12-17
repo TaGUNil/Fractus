@@ -30,7 +30,7 @@ Surface *SimpleMandelbrotSampler::createSurface() const
             {
                 surface->setPoint(x, y, 0);
             }
-            else if (m_function != nullptr)
+            else if (m_function.get() != nullptr)
             {
                 for (Level i = 0; i < m_steps; i++)
                 {

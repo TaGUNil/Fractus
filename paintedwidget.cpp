@@ -3,35 +3,46 @@
 
 PaintedWidget::PaintedWidget(QWidget *parent) :
     QWidget(parent),
-    m_pixmap(nullptr)
+    m_frontPixmap(nullptr),
+    m_backPixmap(nullptr)
 {
 }
 
 void PaintedWidget::setPixmap(QPixmap *pixmap)
 {
-    m_pixmap.reset(pixmap);
+    m_frontPixmap.reset(pixmap);
 }
 
 void PaintedWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
 
-    if (!m_pixmap.get())
+    QPixmap *pixmap = m_frontPixmap.get();
+
+    if (!pixmap)
     {
-        m_pixmap.reset(new QPixmap(this->width(), this->height()));
-        m_pixmap->fill();
+        pixmap = m_backPixmap.get();
+
+        if (!pixmap)
+        {
+            pixmap = new QPixmap(this->width(), this->height());
+
+            pixmap->fill();
+
+            m_backPixmap.reset(pixmap);
+        }
     }
 
     QPainter painter(this);
-    painter.drawPixmap(0, 0, *m_pixmap);
+
+    painter.drawPixmap(0, 0, *pixmap);
 }
 
 void PaintedWidget::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
 
-    if (m_pixmap.get())
-    {
-        m_pixmap.reset();
-    }
+    m_backPixmap.reset();
+
+    emit resized();
 }
